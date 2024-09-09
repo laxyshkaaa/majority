@@ -2,21 +2,21 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
- class MajorityElement {
+ public class Main {
 
 
     // Метод для нахождения элементов, которые встречаются более заданного процента
     public static Map<Integer, Integer> findElementsByPercentage(int[] nums, double percentage) {
-        Map<Integer, Integer> frequencyMap = new HashMap<>();
-        int threshold = (int) (nums.length * (percentage / 100.0));
+        Map<Integer, Integer> elements = new HashMap<>();
+        int rate = (int) (nums.length * (percentage / 100.0));
 
         for (int num : nums) {
-            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+            elements.put(num, elements.getOrDefault(num, 0) + 1);
         }
 
         Map<Integer, Integer> result = new HashMap<>();
-        for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
-            if (entry.getValue() > threshold) {
+        for (Map.Entry<Integer, Integer> entry : elements.entrySet()) {
+            if (entry.getValue() > rate) {
                 result.put(entry.getKey(), entry.getValue());
             }
         }
