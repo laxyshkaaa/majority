@@ -4,23 +4,23 @@ import java.util.Scanner;
 
 public class Main {
 
-    //  метод для нахождения элементов, которые встречаются более заданного процента
+    // Метод для нахождения элементов, которые встречаются более заданного процента в один проход
     public static void findElementsByPercentage(int[] nums, double percentage) {
         Map<Integer, Integer> elements = new HashMap<>();
-        int rate = (int) Math.ceil(nums.length * (percentage / 100.0));  // находим колво элементов, которые войдут в мажоритарность
+        int rate = (int) Math.ceil(nums.length * (percentage / 100.0)); // Рассчитываем порог для мажоритарности
+        System.out.println("Элементы, встречающиеся более " + percentage + "%: ");
 
-        //  считаем количество каждого элемента в мапе
+        boolean found = false;
+
+        // Проходим по массиву
         for (int num : nums) {
+            // Считаем количество текущего элемента
             int count = elements.getOrDefault(num, 0) + 1;
             elements.put(num, count);
-        }
 
-        // Выводим элементы, которые встречаются больше или равны порогу
-        System.out.println("Элементы, встречающиеся более " + percentage + "%: ");
-        boolean found = false;
-        for (Map.Entry<Integer, Integer> entry : elements.entrySet()) {
-            if (entry.getValue() >= rate) {  // Проверка >= rate
-                System.out.println("Элемент: " + entry.getKey() + ", Количество: " + entry.getValue());
+            // Проверяем, превышает ли количество текущего элемента порог
+            if (count == rate) {
+                System.out.println("Элемент: " + num + ", Количество: " + count);
                 found = true;
             }
         }
